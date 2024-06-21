@@ -1,48 +1,36 @@
-import Users from "./users/pages/Users";
-import UserPlaces from "./users/pages/UserPlaces";
-import NewPlace from "./places/Pages/Newplace";
-import UpdatePlace from "./places/Pages/Updateplace";
-import Auth from "./users/pages/Auth";
-
-import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Users from "./Users/Pages/Users";
+import UserPlaces from "./Places/Pages/UserPlaces";
+import NewPlace from "./Places/Pages/NewPlace";
+import UpdatePlace from "./Places/Pages/UpdatePlace";
+import Auth from "./Users/Pages/Auth";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null);
 
   let routes;
+
   if (isLoggedIn) {
     routes = (
       <Routes>
-        <Route path="/" element={<Users />}></Route>
-        <Route path="/:userId/places" element={<UserPlaces />}></Route>
-        <Route path="/places/new" element={<NewPlace />}></Route>
-        <Route path="/places/:placeId" element={<UpdatePlace />}></Route>
-        <Route path="*" element={<Navigate to="/" replace />}></Route>
+        <Route path="/" element={<Users />} />
+        <Route path="/:uid/places" element={<UserPlaces />} />
+        <Route path="/places/new" element={<NewPlace />} />
+        <Route path="/places/:pid" element={<UpdatePlace />} />
       </Routes>
     );
   } else {
     routes = (
       <Routes>
-        <Route path="/" element={<Users />}></Route>
-        <Route path="/:userId/places" element={<UserPlaces />}></Route>
-        <Route path="/auth" element={<Auth />}></Route>
-        <Route path="*" element={<Navigate to="/auth" replace />}></Route>
+        <Route path="/" element={<Users />} />
+        <Route path="/:uid/places" element={<UserPlaces />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     );
   }
 
-  return (
-    <Router>
-      <main>{routes}</main>
-    </Router>
-  );
+  return <Router>{routes}</Router>;
 };
 
 export default App;
