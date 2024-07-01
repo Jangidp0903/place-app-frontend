@@ -5,6 +5,7 @@ import UserPlaces from "./Places/Pages/UserPlaces";
 import NewPlace from "./Places/Pages/NewPlace";
 import UpdatePlace from "./Places/Pages/UpdatePlace";
 import Auth from "./Users/Pages/Auth";
+import MainNavigation from "./Shared/components/Navigation/MainNavigation";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +31,13 @@ const App = () => {
     );
   }
 
-  return <Router>{routes}</Router>;
+  return (
+    <Router>
+      <MainNavigation />
+
+      <main>{routes}</main>
+    </Router>
+  );
 };
 
 export default App;
